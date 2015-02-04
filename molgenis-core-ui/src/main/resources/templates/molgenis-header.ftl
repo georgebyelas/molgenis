@@ -12,11 +12,15 @@
 		<meta http-equiv="X-UA-Compatible" content="chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="<@resource_href "/img/molgenis.ico"/>" type="image/x-icon">
-		<link rel="stylesheet" href="<@resource_href "/css/bootstrap.min.css"/>" type="text/css">
         <link rel="stylesheet" href="<@resource_href "/css/molgenis.css"/>" type="text/css">
-    <#if app_top_logo?has_content>
-        <link rel="stylesheet" href="<@resource_href "/css/molgenis-top-logo.css"/>" type="text/css">
-    </#if>
+        <#if molgeniscsstheme??>
+            <link rel="stylesheet" href="<@resource_href "/css/${molgeniscsstheme}"/>" type="text/css">
+        <#else>
+            <link rel="stylesheet" href="<@resource_href "/css/bootstrap.min.css"/>" type="text/css">
+        </#if>
+        <#if app_top_logo?has_content>
+            <link rel="stylesheet" href="<@resource_href "/css/molgenis-top-logo.css"/>" type="text/css">
+        </#if>
 	<#list css as css_file_name>
 		<link rel="stylesheet" href="<@resource_href "/css/${css_file_name?html}"/>" type="text/css">
 	</#list>
