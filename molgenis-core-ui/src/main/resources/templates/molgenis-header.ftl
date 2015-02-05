@@ -74,7 +74,7 @@
 					<div class="alerts">
 						<#if errorMessage??>
 							<#assign message = errorMessage>
-							<#assign messageType = "error"> 
+							<#assign messageType = "danger"> 
 						<#elseif warningMessage??>
 							<#assign message = warningMessage>
 							<#assign messageType = "warning">

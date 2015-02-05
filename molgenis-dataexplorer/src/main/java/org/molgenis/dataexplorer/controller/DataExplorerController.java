@@ -75,7 +75,7 @@ import com.google.common.collect.Iterables;
 @Controller
 @RequestMapping(URI)
 @SessionAttributes(
-{ ATTR_GALAXY_URL, ATTR_GALAXY_API_KEY })
+		{ ATTR_GALAXY_URL, ATTR_GALAXY_API_KEY })
 public class DataExplorerController extends MolgenisPluginController
 {
 	private static final Logger LOG = LoggerFactory.getLogger(DataExplorerController.class);
@@ -149,13 +149,13 @@ public class DataExplorerController extends MolgenisPluginController
 
 	/**
 	 * Show the explorer page
-	 * 
+	 *
 	 * @param model
 	 * @return the view name
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String init(@RequestParam(value = "entity", required = false) String selectedEntityName,
-			@RequestParam(value = "searchTerm", required = false) String searchTerm, Model model) throws Exception
+					   @RequestParam(value = "searchTerm", required = false) String searchTerm, Model model) throws Exception
 	{
 		boolean entityExists = false;
 		boolean hasEntityPermission = false;
@@ -204,7 +204,7 @@ public class DataExplorerController extends MolgenisPluginController
 
 	@RequestMapping(value = "/module/{moduleId}", method = GET)
 	public String getModule(@PathVariable("moduleId") String moduleId, @RequestParam("entity") String entityName,
-			Model model)
+							Model model)
 	{
 		if (moduleId.equals("data"))
 		{
@@ -251,7 +251,7 @@ public class DataExplorerController extends MolgenisPluginController
 
 	/**
 	 * Returns modules configuration for this entity based on current user permissions.
-	 * 
+	 *
 	 * @param entityName
 	 * @return
 	 */
@@ -338,7 +338,7 @@ public class DataExplorerController extends MolgenisPluginController
 
 	/**
 	 * Get readable genome entities
-	 * 
+	 *
 	 * @return
 	 */
 	private Map<String, String> getGenomeBrowserEntities()
@@ -423,7 +423,7 @@ public class DataExplorerController extends MolgenisPluginController
 	}
 
 	private void writeDataRequestCsv(DataRequest dataRequest, OutputStream outputStream, char separator,
-			boolean noQuotes) throws IOException
+									 boolean noQuotes) throws IOException
 	{
 		CsvWriter csvWriter = new CsvWriter(outputStream, separator, noQuotes);
 		try
@@ -528,7 +528,7 @@ public class DataExplorerController extends MolgenisPluginController
 
 	/**
 	 * Retrieves the distinct attribute from the request, overriding it if the runtime property is set.
-	 * 
+	 *
 	 * @param request
 	 *            the {@link AggregateRequest}
 	 * @return the name of the distinct attribute
@@ -558,7 +558,7 @@ public class DataExplorerController extends MolgenisPluginController
 
 	/**
 	 * Builds a model containing one entity and returns the entityReport ftl view
-	 * 
+	 *
 	 * @author mdehaan, fkelpin
 	 * @param entityName
 	 * @param entityId
@@ -569,7 +569,7 @@ public class DataExplorerController extends MolgenisPluginController
 	 */
 	@RequestMapping(value = "/details", method = RequestMethod.POST)
 	public String viewEntityDetails(@RequestParam(value = "entityName") String entityName,
-			@RequestParam(value = "entityId") String entityId, Model model) throws Exception
+									@RequestParam(value = "entityId") String entityId, Model model) throws Exception
 	{
 		model.addAttribute("entity", dataService.getQueryableRepository(entityName).findOne(entityId));
 		model.addAttribute("entityMetadata", dataService.getEntityMetaData(entityName));
