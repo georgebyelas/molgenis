@@ -241,7 +241,6 @@ public class MappingsBuilder
 						.endObject().endObject();
 				break;
 			case HTML:
-			case SCRIPT:
 			case TEXT:
 				// enable/disable norms based on given value
 				jsonBuilder.field("type", "string");
