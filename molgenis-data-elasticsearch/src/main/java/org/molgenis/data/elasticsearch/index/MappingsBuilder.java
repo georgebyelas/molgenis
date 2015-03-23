@@ -197,7 +197,10 @@ public class MappingsBuilder
 				fieldsObject.endObject();
 				break;
 			case HTML:
-			case TEXT:
+			case MEDIUMTEXT:
+//                jsonBuilder.field("type", "binary");
+//                break;
+            case TEXT:
 				// enable/disable norms based on given value
 				jsonBuilder.field("type", "string");
 				jsonBuilder.field("norms").startObject().field("enabled", enableNorms).endObject();
@@ -205,7 +208,7 @@ public class MappingsBuilder
 				// note: the include_in_all setting is ignored on any field that is defined in the fields options
 				// note: the norms settings defaults to false for not_analyzed fields
 				jsonBuilder.startObject("fields").startObject(FIELD_NOT_ANALYZED).field("type", "string")
-						.field("index", "not_analyzed").endObject().endObject();
+						.field("index", "no").endObject().endObject();
 				break;
 			//FIXME think about script fields
 			case SCRIPT:

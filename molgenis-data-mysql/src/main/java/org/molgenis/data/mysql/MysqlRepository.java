@@ -389,7 +389,9 @@ public class MysqlRepository extends AbstractRepository implements Manageable
 				break;
 			case TEXT:
 				break;
-			case COMPOUND:
+			case MEDIUMTEXT:
+                break;
+            case COMPOUND:
 				break;
 			case MREF:
 			case CATEGORICAL:

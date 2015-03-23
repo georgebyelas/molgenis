@@ -88,7 +88,8 @@ public class EntityToSourceConverter
 			case HYPERLINK:
 			case SCRIPT:
 			case STRING:
-			case TEXT:
+			case MEDIUMTEXT:
+            case TEXT:
 				value = entity.getString(attrName);
 				break;
 			case DATE:
@@ -178,7 +179,8 @@ public class EntityToSourceConverter
 			case HYPERLINK:
 			case SCRIPT:
 			case STRING:
-			case TEXT:
+			case MEDIUMTEXT:
+            case TEXT:
 				value = inputValue;
 				break;
 			case DATE:

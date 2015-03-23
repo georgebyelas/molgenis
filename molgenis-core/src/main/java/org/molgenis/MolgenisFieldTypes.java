@@ -1,28 +1,10 @@
 package org.molgenis;
 
+import java.sql.Types;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.molgenis.fieldtypes.BoolField;
-import org.molgenis.fieldtypes.CategoricalField;
-import org.molgenis.fieldtypes.CompoundField;
-import org.molgenis.fieldtypes.DateField;
-import org.molgenis.fieldtypes.DatetimeField;
-import org.molgenis.fieldtypes.DecimalField;
-import org.molgenis.fieldtypes.EmailField;
-import org.molgenis.fieldtypes.EnumField;
-import org.molgenis.fieldtypes.FieldType;
-import org.molgenis.fieldtypes.FileField;
-import org.molgenis.fieldtypes.HtmlField;
-import org.molgenis.fieldtypes.HyperlinkField;
-import org.molgenis.fieldtypes.ImageField;
-import org.molgenis.fieldtypes.IntField;
-import org.molgenis.fieldtypes.LongField;
-import org.molgenis.fieldtypes.MrefField;
-import org.molgenis.fieldtypes.ScriptField;
-import org.molgenis.fieldtypes.StringField;
-import org.molgenis.fieldtypes.TextField;
-import org.molgenis.fieldtypes.XrefField;
+import org.molgenis.fieldtypes.*;
 import org.molgenis.model.MolgenisModelException;
 import org.molgenis.model.elements.Field;
 import org.slf4j.Logger;
@@ -43,7 +25,7 @@ public class MolgenisFieldTypes
 
 	public enum FieldTypeEnum
 	{
-		BOOL, CATEGORICAL, COMPOUND, DATE, DATE_TIME, DECIMAL, EMAIL, ENUM, FILE, HTML, HYPERLINK, IMAGE, INT, LONG, MREF, SCRIPT, STRING, TEXT, XREF
+		BOOL, CATEGORICAL, COMPOUND, DATE, DATE_TIME, DECIMAL, EMAIL, ENUM, FILE, HTML, HYPERLINK, IMAGE, INT, LONG, MREF, SCRIPT, STRING, TEXT, MEDIUMTEXT, XREF
 	}
 
 	public static final FieldType BOOL = new BoolField();
@@ -65,6 +47,7 @@ public class MolgenisFieldTypes
 	public static final FieldType SCRIPT = new ScriptField();
 	public static final FieldType STRING = new StringField();
 	public static final FieldType TEXT = new TextField();
+	public static final FieldType MEDIUMTEXT = new MediumTextField();
 	public static final FieldType XREF = new XrefField();
 
 	/** Initialize default field types */
@@ -90,6 +73,7 @@ public class MolgenisFieldTypes
 			addType(STRING);
 			addType(SCRIPT);
 			addType(TEXT);
+			addType(MEDIUMTEXT);
 			addType(XREF);
 
 			init = true;
@@ -181,7 +165,6 @@ public class MolgenisFieldTypes
 			case java.sql.Types.NVARCHAR:
 			case java.sql.Types.BLOB:
 			case java.sql.Types.CLOB:
-			case java.sql.Types.LONGVARCHAR:
 			case java.sql.Types.VARBINARY:
 			case java.sql.Types.LONGNVARCHAR:
 				return new StringField();
@@ -189,7 +172,8 @@ public class MolgenisFieldTypes
 			case java.sql.Types.TIME:
 			case java.sql.Types.TIMESTAMP:
 				return new DatetimeField();
-
+            case Types.LONGVARCHAR:
+                return new MediumTextField();
 			default:
 				LOG.error("UNKNOWN sql code: " + sqlCode);
 				return null;

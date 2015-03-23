@@ -117,7 +117,8 @@ public class DefaultEntity implements Entity
 			case HYPERLINK:
 			case SCRIPT:
 			case STRING:
-			case TEXT:
+			case MEDIUMTEXT:
+            case TEXT:
 				return getString(attributeName);
 			case FILE:
 			case IMAGE:
